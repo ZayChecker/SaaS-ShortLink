@@ -1,0 +1,37 @@
+server:
+  port: 5001
+spring:
+  datasource:
+    # ShardingSphere 对 Driver 自定义，实现分库分表等隐藏逻辑
+    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+    # ShardingSphere 配置文件路径
+    url: jdbc:shardingsphere:classpath:shardingsphere-config.yaml
+  data:
+    redis:
+      host: 192.168.139.130
+      port: 7001
+      auth:
+  application:
+    name: shortlink-service
+  cloud:
+    nacos:
+        server-addr: 192.168.139.130:8848
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .html
+  rabbitmq:
+    host: 192.168.139.130
+    port: 5672
+    virtual-host: /hmall
+    username: hmall
+    password: 123
+mybatis-plus:
+  configuration:
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
+short-link:
+  stats:
+    locale:
+      amap-key: 824c511f0997586ea016f979fdb23087
